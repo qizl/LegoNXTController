@@ -724,8 +724,7 @@ namespace LegoNXTController
 
             data[0] = 0x00;
             data[1] = 0x02;
-
-            data[2] = BitConverter.GetBytes(bLoop)[0];
+            data[2] = (byte)(bLoop ? 1 : 0);
             var f = Encoding.ASCII.GetBytes(filename);
             Array.Copy(f, 0, data, 3, f.Length);
 
