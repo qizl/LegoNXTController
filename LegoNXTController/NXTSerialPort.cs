@@ -119,62 +119,62 @@ namespace LegoNXTController
         {
             switch (err)
             {
-            case 0x00:
-                return "Success";
-            case 0x81:
-                return "No more handles";
-            case 0x82:
-                return "No space";
-            case 0x83:
-                return "No more files";
-            case 0x84:
-                return "End of file expected";
-            case 0x85:
-                return "End of file";
-            case 0x86:
-                return "Not linear file";
-            case 0x87:
-                return "File not found";
-            case 0x88:
-                return "Handle all ready closed";
-            case 0x89:
-                return "No linear space";
-            case 0x8a:
-                return "Undefined error";
-            case 0x8b:
-                return "File is busy";
-            case 0x8c:
-                return "No write buffers";
-            case 0x8d:
-                return "Append not possible";
-            case 0x8e:
-                return "File is full";
-            case 0x8f:
-                return "File exists";
-            case 0x90:
-                return "Module not found";
-            case 0x91:
-                return "Out of boundary";
-            case 0x92:
-                return "Illegal file name";
-            case 0x93:
-                return "Illegal handle";
-            case 221:
-                return "low speed protocol";
-            case 236:
-                return "Not running";
-            case 0xfb:
-                return "data received error: packet too small";
-            case 0xfc:
-                return "data received error: bad wrapper size";
-            case 0xfd:
-                return "data received error: command mis-match";
-            case 0xfe:
-                return "data received error: not a reply";
-            case 0xff:
-                return "data received error";
-            default:
-                return "unknown";
+                case 0x00:
+                    return "Success";
+                case 0x81:
+                    return "No more handles";
+                case 0x82:
+                    return "No space";
+                case 0x83:
+                    return "No more files";
+                case 0x84:
+                    return "End of file expected";
+                case 0x85:
+                    return "End of file";
+                case 0x86:
+                    return "Not linear file";
+                case 0x87:
+                    return "File not found";
+                case 0x88:
+                    return "Handle all ready closed";
+                case 0x89:
+                    return "No linear space";
+                case 0x8a:
+                    return "Undefined error";
+                case 0x8b:
+                    return "File is busy";
+                case 0x8c:
+                    return "No write buffers";
+                case 0x8d:
+                    return "Append not possible";
+                case 0x8e:
+                    return "File is full";
+                case 0x8f:
+                    return "File exists";
+                case 0x90:
+                    return "Module not found";
+                case 0x91:
+                    return "Out of boundary";
+                case 0x92:
+                    return "Illegal file name";
+                case 0x93:
+                    return "Illegal handle";
+                case 221:
+                    return "low speed protocol";
+                case 236:
+                    return "Not running";
+                case 0xfb:
+                    return "data received error: packet too small";
+                case 0xfc:
+                    return "data received error: bad wrapper size";
+                case 0xfd:
+                    return "data received error: command mis-match";
+                case 0xfe:
+                    return "data received error: not a reply";
+                case 0xff:
+                    return "data received error";
+                default:
+                    return "unknown";
             }
         }
 
