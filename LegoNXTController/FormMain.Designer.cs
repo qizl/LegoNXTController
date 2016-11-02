@@ -36,6 +36,9 @@
             this.tbpPorts = new System.Windows.Forms.TabPage();
             this.btnClosePort = new System.Windows.Forms.Button();
             this.tbpBaseDatas = new System.Windows.Forms.TabPage();
+            this.cbxSoundFileName = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.btnReadVersion = new System.Windows.Forms.Button();
             this.btnReadBattery = new System.Windows.Forms.Button();
             this.tbpControl = new System.Windows.Forms.TabPage();
@@ -70,7 +73,7 @@
             this.lbxOutput.Location = new System.Drawing.Point(3, 17);
             this.lbxOutput.Name = "lbxOutput";
             this.lbxOutput.Size = new System.Drawing.Size(367, 191);
-            this.lbxOutput.TabIndex = 0;
+            this.lbxOutput.TabIndex = 100;
             // 
             // btnOpenPort
             // 
@@ -89,7 +92,7 @@
             this.cbxPorts.Name = "cbxPorts";
             this.cbxPorts.Size = new System.Drawing.Size(93, 20);
             this.cbxPorts.TabIndex = 0;
-            this.cbxPorts.Text = "COM11";
+            this.cbxPorts.Text = "COM4";
             // 
             // tabControl1
             // 
@@ -128,6 +131,9 @@
             // 
             // tbpBaseDatas
             // 
+            this.tbpBaseDatas.Controls.Add(this.cbxSoundFileName);
+            this.tbpBaseDatas.Controls.Add(this.label1);
+            this.tbpBaseDatas.Controls.Add(this.btnPlay);
             this.tbpBaseDatas.Controls.Add(this.btnReadVersion);
             this.tbpBaseDatas.Controls.Add(this.btnReadBattery);
             this.tbpBaseDatas.Location = new System.Drawing.Point(4, 22);
@@ -135,12 +141,46 @@
             this.tbpBaseDatas.Padding = new System.Windows.Forms.Padding(3);
             this.tbpBaseDatas.Size = new System.Drawing.Size(365, 159);
             this.tbpBaseDatas.TabIndex = 1;
-            this.tbpBaseDatas.Text = "Base Datas";
+            this.tbpBaseDatas.Text = "Base Commands";
             this.tbpBaseDatas.UseVisualStyleBackColor = true;
+            // 
+            // cbxSoundFileName
+            // 
+            this.cbxSoundFileName.FormattingEnabled = true;
+            this.cbxSoundFileName.Items.AddRange(new object[] {
+            "good",
+            "good job",
+            "night",
+            "have a nice day",
+            "you\'re good"});
+            this.cbxSoundFileName.Location = new System.Drawing.Point(28, 69);
+            this.cbxSoundFileName.Name = "cbxSoundFileName";
+            this.cbxSoundFileName.Size = new System.Drawing.Size(111, 20);
+            this.cbxSoundFileName.TabIndex = 2;
+            this.cbxSoundFileName.Text = "good job";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(139, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = ".rso";
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(168, 68);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.TabIndex = 3;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnReadVersion
             // 
-            this.btnReadVersion.Location = new System.Drawing.Point(124, 19);
+            this.btnReadVersion.Location = new System.Drawing.Point(121, 19);
             this.btnReadVersion.Name = "btnReadVersion";
             this.btnReadVersion.Size = new System.Drawing.Size(75, 23);
             this.btnReadVersion.TabIndex = 1;
@@ -169,7 +209,7 @@
             this.tbpControl.Name = "tbpControl";
             this.tbpControl.Size = new System.Drawing.Size(365, 159);
             this.tbpControl.TabIndex = 2;
-            this.tbpControl.Text = "Control";
+            this.tbpControl.Text = "Directions";
             this.tbpControl.UseVisualStyleBackColor = true;
             // 
             // txtSKFocus
@@ -178,7 +218,7 @@
             this.txtSKFocus.Name = "txtSKFocus";
             this.txtSKFocus.ReadOnly = true;
             this.txtSKFocus.Size = new System.Drawing.Size(58, 21);
-            this.txtSKFocus.TabIndex = 5;
+            this.txtSKFocus.TabIndex = 0;
             this.txtSKFocus.Text = "↑↓←→";
             this.txtSKFocus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSKFocus_KeyDown);
             // 
@@ -187,7 +227,7 @@
             this.btnRight.Location = new System.Drawing.Point(262, 61);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 23);
-            this.btnRight.TabIndex = 3;
+            this.btnRight.TabIndex = 2;
             this.btnRight.Text = "Right";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
@@ -197,7 +237,7 @@
             this.btnLeft.Location = new System.Drawing.Point(28, 61);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 23);
-            this.btnLeft.TabIndex = 2;
+            this.btnLeft.TabIndex = 1;
             this.btnLeft.Text = "Left";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
@@ -207,7 +247,7 @@
             this.btnBack.Location = new System.Drawing.Point(145, 112);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
+            this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -240,6 +280,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tbpPorts.ResumeLayout(false);
             this.tbpBaseDatas.ResumeLayout(false);
+            this.tbpBaseDatas.PerformLayout();
             this.tbpControl.ResumeLayout(false);
             this.tbpControl.PerformLayout();
             this.ResumeLayout(false);
@@ -264,6 +305,9 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnForwards;
         private System.Windows.Forms.TextBox txtSKFocus;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbxSoundFileName;
     }
 }
 

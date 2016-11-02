@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.IO.Ports;
 using System.Threading;
+using System;
 
 namespace LegoNXTController
 {
@@ -74,14 +75,11 @@ namespace LegoNXTController
         {
             bool b = true;
 
-            if (!_port.IsOpen)
-                throw new NotOpen();
+            if (!_port.IsOpen) throw new NotOpen();
 
-            if (_port.BytesToRead > 0)
-                Flush();
+            if (_port.BytesToRead > 0) Flush();
 
-            if (_port.BytesToWrite > 0)
-                throw new TxTimeout();
+            if (_port.BytesToWrite > 0) throw new TxTimeout();
 
             try
             {
@@ -108,10 +106,7 @@ namespace LegoNXTController
             return b;
         }
 
-        public static bool Send(byte[] data)
-        {
-            return Send(data, 0);
-        }
+        public static bool Send(byte[] data) { return Send(data, 0); }
 
         #region string ToString(err)
 
@@ -723,23 +718,22 @@ namespace LegoNXTController
             return Send(data);
         }
 
-        public static void PlaySoundFile(string filename, bool bLoop)
+        public static bool PlaySoundFile(string filename, bool bLoop)
         {
             byte[] data = new byte[23];
 
             data[0] = 0x00;
             data[1] = 0x02;
-            if (bLoop)
-                data[2] = 1;  //TODO: is this TRUE?
-            else
-                data[2] = 0;
-            for (int i = 3; i < 22; i++)
-                data[i] = 0;
-            char[] ca = filename.ToCharArray();
-            for (int i = 0; i < filename.Length; i++)
-                data[i + 3] = (byte)ca[i];
+
+            data[2] = BitConverter.GetBytes(bLoop)[0];
+            var f = Encoding.ASCII.GetBytes(filename);
+            Array.Copy(f, 0, data, 3, f.Length);
 
             Send(data, 3);
+
+            if (!mre.WaitOne(1000, false)) return false;
+            if ((nError > 0) || (result.Length != 3) || (result[1] != 0x02)) return false;
+            return true;
         }
 
         #endregion //sound commands

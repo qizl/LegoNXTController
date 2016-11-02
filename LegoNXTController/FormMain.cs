@@ -31,13 +31,18 @@ namespace LegoNXTController
                 return;
 
             bool b = NXTSerialPort.Open(this.cbxPorts.Text);
+
             this.addMessage("端口" + this.cbxPorts.Text + "打开" + (b ? "成功" : "失败") + "！");
             if (b)
             {
                 if (!NXTSerialPort.Beep(400, 200))
+                    //if (!NXTSerialPort.PlaySoundFile("hello.rso", false))
                     this.addMessage("NXT通讯失败！");
                 else
                 {
+                    this.tabControl1.SelectedIndex = 2;
+                    this.txtSKFocus.Focus();
+
                     this.btnReadBattery_Click(sender, e);
                     this.btnReadVersion_Click(sender, e);
                 }
@@ -47,13 +52,16 @@ namespace LegoNXTController
         private void btnClosePort_Click(object sender, EventArgs e)
         {
             if (NXTSerialPort.IsOpen())
+            {
+                NXTSerialPort.PlaySoundFile("goodbye.rso", false);
                 this.addMessage("端口" + this.cbxPorts.Text + "关闭" + (NXTSerialPort.Close() ? "成功" : "失败") + "！");
+            }
             else
                 this.addMessage("端口" + this.cbxPorts.Text + "已关闭！");
         }
         #endregion
 
-        #region Base Datas
+        #region Base Commands
         private void btnReadBattery_Click(object sender, EventArgs e)
         {
             double nMilliVolts = NXTSerialPort.ReadBatteryVoltage();
@@ -72,9 +80,14 @@ namespace LegoNXTController
             else
                 this.addMessage("版本信息读取失败！");
         }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            this.addMessage(NXTSerialPort.PlaySoundFile(this.cbxSoundFileName.Text + ".rso", false).ToString());
+        }
         #endregion
 
-        #region Control
+        #region Directions
         private void btnForwards_Click(object sender, EventArgs e)
         {
             this.run(70, 70);
@@ -87,21 +100,21 @@ namespace LegoNXTController
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            this.run(70, -70);
+            this.run(-70, 70);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            this.run(-70, 70);
+            this.run(70, -70);
         }
 
-        private void run(int b, int c)
+        private void run(int left, int right)
         {
             long nTacho = 50;
             NXTSerialPort.ResetPos(NXTSerialPort.Motor.B);
             NXTSerialPort.ResetPos(NXTSerialPort.Motor.C);
-            bool isSucess = NXTSerialPort.Run(NXTSerialPort.Motor.B, b, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho)
-                   && NXTSerialPort.Run(NXTSerialPort.Motor.C, c, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho);
+            bool isSucess = NXTSerialPort.Run(NXTSerialPort.Motor.B, right, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho)
+                   && NXTSerialPort.Run(NXTSerialPort.Motor.C, left, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho);
 
             if (!isSucess)
                 this.addMessage("Run Error!");
@@ -133,7 +146,10 @@ namespace LegoNXTController
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (NXTSerialPort.IsOpen())
+            {
+                NXTSerialPort.PlaySoundFile("Goodbye.rso", false);
                 NXTSerialPort.Close();
+            }
         }
         #endregion
     }
