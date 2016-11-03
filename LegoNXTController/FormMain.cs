@@ -108,16 +108,25 @@ namespace LegoNXTController
             this.run(70, -70);
         }
 
+        /// <summary>
+        /// Run Interval,ms
+        /// </summary>
+        private static float runInterval = 120;
+        private static DateTime lastRunTime;
         private void run(int left, int right)
         {
-            long nTacho = 50;
-            NXTSerialPort.ResetPos(NXTSerialPort.Motor.B);
-            NXTSerialPort.ResetPos(NXTSerialPort.Motor.C);
-            bool isSucess = NXTSerialPort.Run(NXTSerialPort.Motor.B, right, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho)
-                   && NXTSerialPort.Run(NXTSerialPort.Motor.C, left, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho);
+            if (lastRunTime == default(DateTime) || (DateTime.Now - lastRunTime).TotalMilliseconds >= runInterval)
+            {
+                long nTacho = 50;
+                NXTSerialPort.ResetPos(NXTSerialPort.Motor.B);
+                NXTSerialPort.ResetPos(NXTSerialPort.Motor.C);
+                bool isSucess = NXTSerialPort.Run(NXTSerialPort.Motor.B, right, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho)
+                       && NXTSerialPort.Run(NXTSerialPort.Motor.C, left, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho);
 
-            if (!isSucess)
-                this.addMessage("Run Error!");
+                if (!isSucess)
+                    this.addMessage("Run Error!");
+                lastRunTime = DateTime.Now;
+            }
         }
         #endregion
 
