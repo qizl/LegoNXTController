@@ -85,6 +85,16 @@ namespace LegoNXTController
         {
             this.addMessage(NXTSerialPort.PlaySoundFile(this.cbxSoundFileName.Text + ".rso", false).ToString());
         }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            this.addMessage(NXTSerialPort.Run(this.cbxProgramName.Text + ".rxe").ToString());
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            this.addMessage(NXTSerialPort.Stop().ToString());
+        }
         #endregion
 
         #region Directions
@@ -111,7 +121,7 @@ namespace LegoNXTController
         /// <summary>
         /// Run Interval,ms
         /// </summary>
-        private static float runInterval = 120;
+        private static float runInterval = 100;
         private static DateTime lastRunTime;
         private void run(int left, int right)
         {

@@ -36,6 +36,10 @@
             this.tbpPorts = new System.Windows.Forms.TabPage();
             this.btnClosePort = new System.Windows.Forms.Button();
             this.tbpBaseDatas = new System.Windows.Forms.TabPage();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxProgramName = new System.Windows.Forms.ComboBox();
             this.cbxSoundFileName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
@@ -131,6 +135,10 @@
             // 
             // tbpBaseDatas
             // 
+            this.tbpBaseDatas.Controls.Add(this.btnStop);
+            this.tbpBaseDatas.Controls.Add(this.btnRun);
+            this.tbpBaseDatas.Controls.Add(this.label2);
+            this.tbpBaseDatas.Controls.Add(this.cbxProgramName);
             this.tbpBaseDatas.Controls.Add(this.cbxSoundFileName);
             this.tbpBaseDatas.Controls.Add(this.label1);
             this.tbpBaseDatas.Controls.Add(this.btnPlay);
@@ -143,6 +151,46 @@
             this.tbpBaseDatas.TabIndex = 1;
             this.tbpBaseDatas.Text = "Base Commands";
             this.tbpBaseDatas.UseVisualStyleBackColor = true;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(249, 108);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 6;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(168, 107);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 5;
+            this.btnRun.Text = "Run";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(139, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = ".rxe";
+            // 
+            // cbxProgramName
+            // 
+            this.cbxProgramName.FormattingEnabled = true;
+            this.cbxProgramName.Items.AddRange(new object[] {
+            "autorunning"});
+            this.cbxProgramName.Location = new System.Drawing.Point(28, 108);
+            this.cbxProgramName.Name = "cbxProgramName";
+            this.cbxProgramName.Size = new System.Drawing.Size(111, 20);
+            this.cbxProgramName.TabIndex = 4;
+            this.cbxProgramName.Text = "autorunning";
             // 
             // cbxSoundFileName
             // 
@@ -308,6 +356,10 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbxSoundFileName;
+        private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbxProgramName;
+        private System.Windows.Forms.Button btnStop;
     }
 }
 

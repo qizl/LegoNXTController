@@ -384,15 +384,16 @@ namespace LegoNXTController
                 throw new InvalidResult();
         }
 
-        public static void Run(string filename)
+        public static bool Run(string filename)
         {
             mre.Reset();
             RunFile(filename);
             if (!mre.WaitOne(1000, false))
-                throw new NxtTimeout();
+                return false;
+            return true;
         }
 
-        public static void Stop()
+        public static bool Stop()
         {
             byte[] data = new byte[2];
 
@@ -402,7 +403,8 @@ namespace LegoNXTController
             mre.Reset();
             Send(data, 3);
             if (!mre.WaitOne(1000, false))
-                throw new NxtTimeout();
+                return false;
+            return true;
         }
 
         #endregion //file handling commands
