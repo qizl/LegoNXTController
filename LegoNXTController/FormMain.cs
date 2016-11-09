@@ -138,6 +138,24 @@ namespace LegoNXTController
                 lastRunTime = DateTime.Now;
             }
         }
+
+        private void btnRotateA_Click(object sender, EventArgs e)
+        {
+            this.rotateA(60);
+        }
+        private void rotateA(int i)
+        {
+            if (lastRunTime == default(DateTime) || (DateTime.Now - lastRunTime).TotalMilliseconds >= runInterval)
+            {
+                long nTacho = 50;
+                NXTSerialPort.ResetPos(NXTSerialPort.Motor.A);
+                bool isSucess = NXTSerialPort.Run(NXTSerialPort.Motor.A, i, NXTSerialPort.MotorMode.On, NXTSerialPort.MotorRegulation.Idle, 0, NXTSerialPort.MotorRunState.Run, nTacho);
+
+                if (!isSucess)
+                    this.addMessage("RotateA Error!");
+                lastRunTime = DateTime.Now;
+            }
+        }
         #endregion
 
         #region Form Events
@@ -158,6 +176,11 @@ namespace LegoNXTController
                 this.btnBack_Click(sender, e);
             if (e.KeyCode == Keys.Space)
                 NXTSerialPort.Beep(400, 200);
+
+            if (e.KeyCode == Keys.A)
+                this.rotateA(-70);
+            if (e.KeyCode == Keys.D)
+                this.rotateA(70);
 
             Thread.Sleep(100);
         }

@@ -51,6 +51,7 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnForwards = new System.Windows.Forms.Button();
+            this.btnRotateA = new System.Windows.Forms.Button();
             this.gbxOutput.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tbpPorts.SuspendLayout();
@@ -62,9 +63,9 @@
             // 
             this.gbxOutput.Controls.Add(this.lbxOutput);
             this.gbxOutput.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbxOutput.Location = new System.Drawing.Point(0, 185);
+            this.gbxOutput.Location = new System.Drawing.Point(0, 253);
             this.gbxOutput.Name = "gbxOutput";
-            this.gbxOutput.Size = new System.Drawing.Size(373, 211);
+            this.gbxOutput.Size = new System.Drawing.Size(830, 211);
             this.gbxOutput.TabIndex = 0;
             this.gbxOutput.TabStop = false;
             this.gbxOutput.Text = "Output";
@@ -76,7 +77,7 @@
             this.lbxOutput.ItemHeight = 12;
             this.lbxOutput.Location = new System.Drawing.Point(3, 17);
             this.lbxOutput.Name = "lbxOutput";
-            this.lbxOutput.Size = new System.Drawing.Size(367, 191);
+            this.lbxOutput.Size = new System.Drawing.Size(824, 191);
             this.lbxOutput.TabIndex = 100;
             // 
             // btnOpenPort
@@ -96,7 +97,7 @@
             this.cbxPorts.Name = "cbxPorts";
             this.cbxPorts.Size = new System.Drawing.Size(93, 20);
             this.cbxPorts.TabIndex = 0;
-            this.cbxPorts.Text = "COM4";
+            this.cbxPorts.Text = "COM3";
             // 
             // tabControl1
             // 
@@ -107,7 +108,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(373, 185);
+            this.tabControl1.Size = new System.Drawing.Size(830, 253);
             this.tabControl1.TabIndex = 2;
             // 
             // tbpPorts
@@ -135,6 +136,7 @@
             // 
             // tbpBaseDatas
             // 
+            this.tbpBaseDatas.Controls.Add(this.btnRotateA);
             this.tbpBaseDatas.Controls.Add(this.btnStop);
             this.tbpBaseDatas.Controls.Add(this.btnRun);
             this.tbpBaseDatas.Controls.Add(this.label2);
@@ -147,7 +149,7 @@
             this.tbpBaseDatas.Location = new System.Drawing.Point(4, 22);
             this.tbpBaseDatas.Name = "tbpBaseDatas";
             this.tbpBaseDatas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpBaseDatas.Size = new System.Drawing.Size(365, 159);
+            this.tbpBaseDatas.Size = new System.Drawing.Size(822, 227);
             this.tbpBaseDatas.TabIndex = 1;
             this.tbpBaseDatas.Text = "Base Commands";
             this.tbpBaseDatas.UseVisualStyleBackColor = true;
@@ -310,11 +312,21 @@
             this.btnForwards.UseVisualStyleBackColor = true;
             this.btnForwards.Click += new System.EventHandler(this.btnForwards_Click);
             // 
+            // btnRotateA
+            // 
+            this.btnRotateA.Location = new System.Drawing.Point(340, 19);
+            this.btnRotateA.Name = "btnRotateA";
+            this.btnRotateA.Size = new System.Drawing.Size(75, 23);
+            this.btnRotateA.TabIndex = 7;
+            this.btnRotateA.Text = "Rotate A";
+            this.btnRotateA.UseVisualStyleBackColor = true;
+            this.btnRotateA.Click += new System.EventHandler(this.btnRotateA_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 396);
+            this.ClientSize = new System.Drawing.Size(830, 464);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.gbxOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -360,6 +372,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbxProgramName;
         private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnRotateA;
     }
 }
 
