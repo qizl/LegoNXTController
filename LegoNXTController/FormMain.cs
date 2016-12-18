@@ -121,7 +121,7 @@ namespace LegoNXTController
         /// <summary>
         /// Run Interval,ms
         /// </summary>
-        private static float runInterval = 100;
+        private static float runInterval = 70;
         private static DateTime lastRunTime;
         private void run(int left, int right)
         {
